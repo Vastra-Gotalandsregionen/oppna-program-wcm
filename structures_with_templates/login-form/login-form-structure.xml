@@ -1,0 +1,74 @@
+<root>
+  <dynamic-element name='heading' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[false]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Rubrik]]></entry>
+      <entry name="predefinedValue"><![CDATA[Inloggning]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='descriptiveText' type='text_box' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[false]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Inledande f&ouml;rklarande text]]></entry>
+      <entry name="predefinedValue"><![CDATA[Skriv en text om du vill...]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='url' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[true]]></entry>
+      <entry name="required"><![CDATA[true]]></entry>
+      <entry name="instructions"><![CDATA[URL dit formul&auml;ret kommer postas]]></entry>
+      <entry name="label"><![CDATA[URL]]></entry>
+      <entry name="predefinedValue"><![CDATA[http://example.com]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='nameLabel' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[true]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Etikett f&ouml;r namnf&auml;ltet]]></entry>
+      <entry name="predefinedValue"><![CDATA[Namn]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='nameField' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[true]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Namn p&aring; namnparameter]]></entry>
+      <entry name="predefinedValue"><![CDATA[name]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='passwordLabel' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[true]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Etikett f&ouml;r l&ouml;senordsfältet]]></entry>
+      <entry name="predefinedValue"><![CDATA[Lösenord]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='passwordField' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[true]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Namn p&aring; l&ouml;senordsparameter]]></entry>
+      <entry name="predefinedValue"><![CDATA[password]]></entry>
+    </meta-data>
+  </dynamic-element>
+  <dynamic-element name='loginButtonText' type='text' index-type='' repeatable='false'>
+    <meta-data>
+      <entry name="displayAsTooltip"><![CDATA[false]]></entry>
+      <entry name="required"><![CDATA[false]]></entry>
+      <entry name="instructions"><![CDATA[]]></entry>
+      <entry name="label"><![CDATA[Text p&aring; login-knapp]]></entry>
+      <entry name="predefinedValue"><![CDATA[Logga in]]></entry>
+    </meta-data>
+  </dynamic-element>
+</root>
