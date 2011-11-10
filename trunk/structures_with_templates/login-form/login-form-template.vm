@@ -1,0 +1,24 @@
+<style type="text/css">
+    .label-row {
+        margin-top: 10px;
+    }
+</style>
+<div>
+    <form id="login-form" action="${url.data}" method="POST">
+        <b>${heading.data}</b>
+        <div class="label-row" id="explanatory-text">
+            ${descriptiveText.data}
+        </div>
+        <div class="label-row">
+            <b>${nameLabel.data}</b>
+        </div>
+            <input type="text" name="${nameField.data}"/>
+        <div class="label-row">
+            <b>${passwordLabel.data}</b>
+		</div>
+        <input type="password" name="${passwordField.data}"/>
+        <div class="label-row">
+            <input type="submit" value="${loginButtonText.data}">
+        </div>
+    </form>
+</div>
