@@ -1,0 +1,47 @@
+<root>
+	<dynamic-element name='title' type='text' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[true]]></entry>
+			<entry name="instructions"><![CDATA[Type in a title]]></entry>
+			<entry name="label"><![CDATA[Custom title]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name='blogsLayout' type='link_to_layout' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[true]]></entry>
+			<entry name="instructions"><![CDATA[Choose what page the blog is placed on]]></entry>
+			<entry name="label"><![CDATA[Blogs Page]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name='numberOfEntries' type='text' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[true]]></entry>
+			<entry name="instructions"><![CDATA[Type in the number of entries to display (a number)]]></entry>
+			<entry name="label"><![CDATA[Number of Entries]]></entry>
+			<entry name="predefinedValue"><![CDATA[5]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name='showAuthor' type='boolean' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[Choose whether or not the the author of the blog entry is displayed in the blog entries list]]></entry>
+			<entry name="label"><![CDATA[Show Author]]></entry>
+			<entry name="predefinedValue"><![CDATA[false]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name='showCommentsCount' type='boolean' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[Choose whether or not the the number of comments for the blog entry is displayed in the blog entries list]]></entry>
+			<entry name="label"><![CDATA[Show Comments Count]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+</root>

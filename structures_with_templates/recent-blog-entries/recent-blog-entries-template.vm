@@ -1,0 +1,140 @@
+## Define some services
+#set ($blogsEntryLocalService = $serviceLocator.findService("com.liferay.portlet.blogs.service.BlogsEntryLocalService"))
+#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
+#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+#set ($layoutSetLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutSetLocalService"))
+#set ($mbMessageLocalService = $serviceLocator.findService("com.liferay.portlet.messageboards.service.MBMessageLocalService"))
+
+##Define variables
+#set ($null = $some-never-used-variable)
+#set ($themeDisplay = $request.get('theme-display'))
+#set ($scopePlid = $getterUtil.getLong($themeDisplay.get('plid')))
+#set ($scopeLayout = $layoutLocalService.getLayout($scopePlid))
+#set ($groupIdLong = $getterUtil.getLong($groupId))
+#set ($scopeGroup = $groupLocalService.getGroup($groupIdLong))
+#set ($urlPrefix = "")
+#set($isScopeLayoutPrivate = $scopeLayout.isPrivateLayout())
+
+## Layout URL prefix
+#set($scopeLayoutSet = $layoutSetLocalService.getLayoutSet($groupIdLong, $isScopeLayoutPrivate))
+
+#set($scopeLayoutSetVirtualHost = $scopeLayoutSet.virtualHost)
+
+#set($hasVirtualHost = false)
+
+#if($scopeLayoutSetVirtualHost != $null && $scopeLayoutSetVirtualHost != "")
+	#set($hasVirtualHost = true)
+#end
+
+#if(!$hasVirtualHost)
+
+	#if($scopeLayout.isPrivateLayout())
+		#set($urlPrefix = "/group")
+	#else
+		#set($urlPrefix = "/web")
+	#end
+	
+	#set($urlPrefix = $urlPrefix + $scopeGroup.friendlyURL)
+
+#end
+
+## Blogs page
+#set($blogsPageLayoutId = $getterUtil.getLong($blogsLayout.data))
+#set ($blogsPageLayout = $layoutLocalService.getLayout($groupIdLong, $scopeLayout.isPrivateLayout(), $blogsPageLayoutId))
+#set($blogsPageURL = $urlPrefix + $blogsPageLayout.friendlyURL)
+#set($blogsPortletUrlMapper = "/-/blogs/")
+
+## Number of entries
+#set ($numberOfEntriesInteger = $getterUtil.getInteger($numberOfEntries.data))
+
+#set($blogEntriesStart = 0)
+#set($blogEntriesEnd = $numberOfEntriesInteger)
+#if($numberOfEntriesInteger < 0)
+	#set($blogEntriesEnd = 0)
+#end
+
+## Blog Entries
+#set ($obc = $portal.getClass().forName("com.liferay.portlet.blogs.util.comparator.EntryDisplayDateComparator").newInstance())
+#set($blogsEntries = $blogsEntryLocalService.getGroupEntries($groupIdLong, 0, $blogEntriesStart, $blogEntriesEnd, $obc))
+
+#set($showBlogsEntries = false)
+
+#if($blogsEntries != $null)
+	#if($blogsEntries.size() > 0)
+		#set($showBlogsEntries = true)
+	#end
+#end
+
+#if($showBlogsEntries)
+    <div class="vgr-boxed-content recent-blog-entries">
+        <div class="hd">
+    		<span>${title.data}</span>
+    	</div>
+    	<div class="bd">
+    		<div class="vgr-list-view-wrap">
+        		<ul class="vgr-list-view vgr-list-view-condensed">
+        			
+    				#set($ticker = 0)
+    				
+        			#foreach($blogsEntry in $blogsEntries)
+    					
+    					#set($listItemCssClass = "vgr-list-view-item")
+						
+						## Odd
+						#if($ticker%2 != 0)
+							#set($listItemCssClass = $listItemCssClass + " vgr-list-view-item-odd")
+						#end
+    					
+    					## Last
+    					#if($ticker + 1 == $blogsEntries.size())
+    						#set($listItemCssClass = $listItemCssClass + " vgr-list-view-item-last")
+    					#end
+        			
+        				#set($blogsEntryURL = $blogsPageURL + $blogsPortletUrlMapper + $blogsEntry.urlTitle)
+						
+						###set($blogsPageLayoutId = $getterUtil.getLong($blogsLayout.data))
+						
+						#set($commentsCount = $mbMessageLocalService.getDiscussionMessagesCount("com.liferay.portlet.blogs.model.BlogsEntry", $blogsEntry.entryId, 0))
+        			
+        				<li class="$listItemCssClass">
+    						<div class="hd clearfix">
+                                <h3 class="title">
+    								<a href="$blogsEntryURL">
+    									${blogsEntry.title}	
+                                    </a>
+    							</h3>
+    						</div>
+    						<div class="bd">
+    							$stringUtil.shorten($blogsEntry.content, 100, "...")
+    						</div>
+    						<div class="ft">
+    							$dateTool.format("yyyy-MM-dd", $blogsEntry.displayDate)
+								#if($showAuthor.data == "true")
+									av $blogsEntry.userName
+								#end
+								#if($showCommentsCount.data == "true")
+    								#if($commentsCount <= 0)
+    								#elseif($commentsCount == 1)
+    									| $commentsCount kommentar
+    								#else
+    									| $commentsCount kommentarer
+    								#end
+								#end
+    						</div>
+        				</li>
+    					
+    					#set($ticker = $ticker + 1)
+        			#end
+        			
+        		</ul>
+    		</div>
+			
+			<div class="rp-link-wrap rp-link-wrap-last rp-link-wrap-right">
+				<a class="rp-link" href="$blogsPageURL">
+					<span>Fler blogginl&auml;gg</span>
+				</a>
+			</div>
+			
+    	</div>
+    </div>
+#end
