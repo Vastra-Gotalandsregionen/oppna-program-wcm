@@ -1,0 +1,65 @@
+## Define some services
+#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
+#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+#set ($layoutSetLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutSetLocalService"))
+
+##Define variables
+#set ($null = $some-never-used-variable)
+#set ($themeDisplay = $request.get('theme-display'))
+#set ($scopePlid = $getterUtil.getLong($themeDisplay.get('plid')))
+#set ($scopeLayout = $layoutLocalService.getLayout($scopePlid))
+#set ($groupIdLong = $getterUtil.getLong($groupId))
+#set ($scopeGroup = $groupLocalService.getGroup($groupIdLong))
+#set ($urlPrefix = "")
+
+#set($scopeLayoutSet = $layoutSetLocalService.getLayoutSet($groupIdLong, $scopeLayout.isPrivateLayout()))
+
+#set($scopeLayoutSetVirtualHost = $scopeLayoutSet.getVirtualHostname())
+
+#set($hasVirtualHost = false)
+
+#if($scopeLayoutSetVirtualHost != $null && $scopeLayoutSetVirtualHost != "")
+	#set($hasVirtualHost = true)
+#end
+
+#if(!$hasVirtualHost)
+
+	#if($scopeLayout.isPrivateLayout())
+		#set($urlPrefix = "/group")
+	#else
+		#set($urlPrefix = "/web")
+	#end
+	
+	#set($urlPrefix = $urlPrefix + $scopeGroup.getFriendlyURL())
+
+#end
+
+<div class="info-box">
+    <h2 class="title">${title.data}</h2>
+	<div class="content clearfix">
+		
+		#if($image.data != $null)
+    		#if($image.data != "")
+    			<img src="${image.data}" alt="" class="image" />
+    		#end
+		#end
+		${content.data}
+	</div>
+	
+	#if($linkTitle.linkInternal.data != "" || $linkTitle.linkExternal.data != "")
+		#set($linkURL = "")
+		#set($linkTarget = "")
+		#if($linkTitle.linkInternal.data != "")
+    		#set($linkLayoutId = $getterUtil.getLong($linkTitle.linkInternal.data))
+    		#set ($linkLayout = $layoutLocalService.getLayout($groupIdLong, $scopeLayout.isPrivateLayout(), $linkLayoutId))
+    		#set($linkURL = $urlPrefix + $linkLayout.getFriendlyURL())
+		#else
+			#set($linkURL = $linkTitle.linkExternal.data)
+			#set($linkTarget = "_BLANK")
+		#end
+    	<div class="link-wrap">
+            <a class="rp-link" href="${linkURL}" target="${linkTarget}"><span>${linkTitle.data}</span></a>
+    	</div>
+	#end
+	
+</div>

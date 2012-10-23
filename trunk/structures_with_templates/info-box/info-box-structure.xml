@@ -1,0 +1,9 @@
+<root>
+	<dynamic-element name='title' type='text' index-type='' repeatable='false'></dynamic-element>
+	<dynamic-element name='content' type='text_area' index-type='' repeatable='false'></dynamic-element>
+	<dynamic-element name='image' type='image_gallery' index-type='' repeatable='false'></dynamic-element>
+	<dynamic-element name='linkTitle' type='text' index-type='' repeatable='false'>
+	    <dynamic-element name='linkInternal' type='link_to_layout' index-type='' repeatable='false'>  </dynamic-element>
+	    <dynamic-element name='linkExternal' type='text' index-type='' repeatable='false'></dynamic-element>
+  </dynamic-element>
+</root>
