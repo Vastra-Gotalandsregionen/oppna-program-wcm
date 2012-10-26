@@ -15,7 +15,7 @@
 #set ($urlPrefix = "")
 #set($isScopeLayoutPrivate = $scopeLayout.isPrivateLayout())
 
-#set ($descriptionMaxSize = 150)
+#set ($descriptionMaxSize = 200)
 
 ## Layout URL prefix
 #set($scopeLayoutSet = $layoutSetLocalService.getLayoutSet($groupIdLong, $isScopeLayoutPrivate))
@@ -28,7 +28,13 @@
 	#set($hasVirtualHost = true)
 #end
 
-#if(!$hasVirtualHost)
+## Find whether client is on virtual host
+#set($currentUrl = $request.get("attributes").get("CURRENT_URL"))
+#set ($friendlyUrl = $request.get("attributes").get("FRIENDLY_URL"))
+## If the client is not on the virtual host both variables are e.g. /web/vardaktorsportalen
+#set($clientOnVirtualHost = !$currentUrl.equals($friendlyUrl))
+
+#if(!$hasVirtualHost || !$clientOnVirtualHost)
 
 	#if($scopeLayout.isPrivateLayout())e
 		#set($urlPrefix = "/group")
