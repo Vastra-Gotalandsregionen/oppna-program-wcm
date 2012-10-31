@@ -32,7 +32,7 @@
 #set($currentUrl = $request.get("attributes").get("CURRENT_URL"))
 #set ($friendlyUrl = $request.get("attributes").get("FRIENDLY_URL"))
 ## If the client is not on the virtual host both variables are e.g. /web/vardaktorsportalen
-#set($clientOnVirtualHost = !$currentUrl.equals($friendlyUrl))
+#set($clientOnVirtualHost = !$currentUrl.contains($friendlyUrl))
 
 #if(!$hasVirtualHost || !$clientOnVirtualHost)
 

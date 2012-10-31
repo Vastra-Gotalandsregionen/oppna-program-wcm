@@ -11,10 +11,12 @@
 #set ($groupIdLong = $getterUtil.getLong($groupId))
 #set ($scopeGroup = $groupLocalService.getGroup($groupIdLong))
 #set ($urlPrefix = "")
+#set($isScopeLayoutPrivate = $scopeLayout.isPrivateLayout())
 
-#set($scopeLayoutSet = $layoutSetLocalService.getLayoutSet($groupIdLong, $scopeLayout.isPrivateLayout()))
+## Layout URL prefix
+#set($scopeLayoutSet = $layoutSetLocalService.getLayoutSet($groupIdLong, $isScopeLayoutPrivate))
 
-#set($scopeLayoutSetVirtualHost = $scopeLayoutSet.getVirtualHostname())
+#set($scopeLayoutSetVirtualHost = $scopeLayoutSet.virtualHost)
 
 #set($hasVirtualHost = false)
 
@@ -22,7 +24,13 @@
 	#set($hasVirtualHost = true)
 #end
 
-#if(!$hasVirtualHost)
+## Find whether client is on virtual host
+#set($currentUrl = $request.get("attributes").get("CURRENT_URL"))
+#set ($friendlyUrl = $request.get("attributes").get("FRIENDLY_URL"))
+## If the client is not on the virtual host both variables are e.g. /web/vardaktorsportalen
+#set($clientOnVirtualHost = !$currentUrl.contains($friendlyUrl))
+
+#if(!$hasVirtualHost || !$clientOnVirtualHost)
 
 	#if($scopeLayout.isPrivateLayout())
 		#set($urlPrefix = "/group")
@@ -30,9 +38,10 @@
 		#set($urlPrefix = "/web")
 	#end
 	
-	#set($urlPrefix = $urlPrefix + $scopeGroup.getFriendlyURL())
+	#set($urlPrefix = $urlPrefix + $scopeGroup.friendlyURL)
 
 #end
+
 
 <div class="info-box">
     <h2 class="title">${title.data}</h2>
