@@ -40,7 +40,7 @@
 
 #if(!$hasVirtualHost || !$clientOnVirtualHost)
 
-	#if($scopeLayout.isPrivateLayout())e
+	#if($scopeLayout.isPrivateLayout())
 		#set($urlPrefix = "/group")
 	#else
 		#set($urlPrefix = "/web")
