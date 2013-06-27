@@ -1,0 +1,21 @@
+#set($boxStyle = "")
+#if($skin.data == "standard")
+	## Do nothing
+#elseif($skin.data == "alt-2")
+	#set($boxStyle = $boxStyle + " margin: 10px;")
+#end
+
+
+<div class="rp-box" style="${boxStyle}">
+	<div class="rp-box-inner">
+
+		#if($title.data != $null)
+			<h2 class="title">${title.data}</h2>
+		#end
+
+		<div class="content clearfix">
+			${content.data}
+		</div>
+
+	</div>
+</div>

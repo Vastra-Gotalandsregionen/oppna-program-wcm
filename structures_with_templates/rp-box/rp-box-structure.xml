@@ -1,0 +1,32 @@
+<root>
+	<dynamic-element name='title' type='text' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[Skriv in puffboxens rubrik.]]></entry>
+			<entry name="label"><![CDATA[Artikelrubrik]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name='content' type='text_area' index-type='' repeatable='false'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[Skriv in br&ouml;dtext f&ouml;r puffboxen.]]></entry>
+			<entry name="label"><![CDATA[Br&ouml;dtext]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>	
+	</dynamic-element>
+
+	<dynamic-element name="skin" type="list" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[V&auml;lj utseende f&ouml;r boxen]]></entry>
+			<entry name="label"><![CDATA[Boxens utseende]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+		<dynamic-element name="Standard" type="standard" index-type="" repeatable="false"></dynamic-element>
+		<dynamic-element name="Alt-2" type="alt-2" index-type="" repeatable="false"></dynamic-element>
+	</dynamic-element>
+</root>
