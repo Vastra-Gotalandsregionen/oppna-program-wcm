@@ -15,7 +15,7 @@
     <tt>
       oppna-program-wcm
     </tt>
-     är en del i V?stra Götalandsregionens satsning på Öppen källkod inom ramen för 
+     är en del i Västra Götalandsregionens satsning på Öppen källkod inom ramen för 
     <a href="https://github.com/Vastra-Gotalandsregionen//oppna-program">
       Öppna Program
     </a>
